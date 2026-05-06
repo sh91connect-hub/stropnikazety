@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+
+<html lang="cs">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Stropni-kazety.com · Návrh e-mail marketing automatizací</title>
+<meta content="HTML prezentace pro stropni-kazety.com — automatizace pro stropní kazety, trámy, dekorace, tapety, lišty, obklady, chemii, barvy a navazující sortiment." name="description"/>
+<style>
+    :root {
+      --bg: #f6f1e8;
+      --bg-soft: #fffaf2;
+      --paper: #ffffff;
+      --ink: #171614;
+      --muted: #6f665c;
+      --line: rgba(23, 22, 20, .11);
+      --dark: #151412;
+      --dark-2: #24201b;
+      --orange: #f27a1a;
+      --orange-2: #ff9a2e;
+      --gold: #ffd36a;
+      --brown: #7a4d24;
+      --green: #557a42;
+      --cream: #fff1d9;
+      --grad: linear-gradient(135deg, #7a4d24 0%, #f27a1a 48%, #ffd36a 100%);
+      --shadow: 0 24px 70px rgba(34, 27, 18, .10);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.58;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; text-decoration: none; }
+    strong { color: var(--ink); }
+
+    /*
+      ============================================================
+      ASSETY PRO GITHUB
+      Vytvoř složku /assets vedle index.html a nahraj obrázky:
+
+      assets/almao-logo.webp
+      assets/stefan-hrusovsky.webp
+      assets/vino-hruska-vernostny-program.png
+      assets/snackstore-produktovy-newsletter.png
+      assets/afra-produktovy-newsletter.png
+      assets/stropni-kazety-hero.png          volitelné
+      assets/stropni-kazety-logo.png          volitelné
+      ============================================================
+    */
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(246, 241, 232, .86);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 15px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: -.02em;
+    }
+    .brand-logo {
+      width: 118px;
+      height: auto;
+      display: block;
+    }
+    .brand-fallback {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: var(--grad);
+      color: #fff;
+      font-weight: 950;
+    }
+    .nav-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .pill {
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.66);
+      font-weight: 750;
+    }
+
+    .page { overflow: hidden; }
+    section {
+      position: relative;
+      padding: 94px 22px;
+    }
+    .section-soft { background: var(--bg); }
+    .section-paper { background: var(--bg-soft); }
+    .section-dark {
+      background:
+        radial-gradient(circle at 12% 12%, rgba(242, 122, 26, .24), transparent 31%),
+        radial-gradient(circle at 88% 18%, rgba(255, 211, 106, .16), transparent 28%),
+        var(--dark);
+      color: #fff;
+    }
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero {
+      min-height: 760px;
+      display: grid;
+      align-items: center;
+      background:
+        radial-gradient(circle at 78% 18%, rgba(255, 211, 106, .32), transparent 28%),
+        radial-gradient(circle at 12% 18%, rgba(122, 77, 36, .15), transparent 31%),
+        var(--bg-soft);
+    }
+    .hero-grid { display: block; }
+    .hero-copy { max-width: 1020px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      margin-bottom: 24px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 30px rgba(34, 27, 18, .06);
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 850;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 980px;
+      margin-bottom: 24px;
+      font-size: clamp(48px, 7vw, 86px);
+      line-height: 1.03;
+      letter-spacing: -.043em;
+      font-weight: 940;
+    }
+    h2 {
+      max-width: 920px;
+      margin-bottom: 20px;
+      font-size: clamp(34px, 4.8vw, 62px);
+      line-height: 1.06;
+      letter-spacing: -.034em;
+      font-weight: 920;
+    }
+    h3 {
+      margin-bottom: 10px;
+      font-size: 24px;
+      line-height: 1.18;
+      letter-spacing: -.02em;
+      font-weight: 900;
+    }
+    .gradient-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .lead {
+      max-width: 840px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.72;
+    }
+    .section-dark .lead { color: rgba(255,255,255,.76); }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      font-weight: 950;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+    .section-label::before {
+      content: "";
+      width: 38px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--grad);
+    }
+    .section-dark .section-label { color: var(--gold); }
+
+    .hero-visual {
+      margin-top: 34px;
+      width: 100%;
+      padding: 14px;
+      border-radius: var(--radius-xl);
+      background: rgba(255,255,255,.68);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .image-slot {
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255, 211, 106, .42), transparent 34%),
+        linear-gradient(135deg, #fff4df, #efe0cf);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: rgba(23,22,20,.45);
+      font-weight: 900;
+      letter-spacing: .04em;
+    }
+    .image-slot.hero-banner {
+      width: 100%;
+      min-height: 0;
+      aspect-ratio: 16 / 6;
+      background: #fff;
+    }
+    .image-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .image-slot.hero-banner img {
+      object-fit: contain;
+      background: #fff;
+    }
+    .image-slot.missing::before {
+      content: attr(data-placeholder);
+      padding: 22px;
+      max-width: 320px;
+    }
+    .image-slot:not(.missing)::before { content: ""; }
+
+    .meta-strip {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      overflow: hidden;
+      border-radius: 24px;
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 38px rgba(34,27,18,.06);
+    }
+    .meta-strip div {
+      padding: 17px 18px;
+      border-right: 1px solid var(--line);
+    }
+    .meta-strip div:last-child { border-right: 0; }
+    .meta-k {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    .meta-v {
+      display: block;
+      font-weight: 900;
+      line-height: 1.24;
+    }
+
+    .grid-2, .grid-3, .grid-4 {
+      display: grid;
+      gap: 22px;
+      margin-top: 42px;
+    }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+    .card {
+      border-radius: var(--radius-lg);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 30px;
+      box-shadow: 0 18px 44px rgba(34,27,18,.07);
+      color: var(--ink);
+    }
+    .card p { color: var(--muted); margin-bottom: 0; }
+    .stat {
+      min-height: 245px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .stat-number {
+      display: block;
+      margin-bottom: 16px;
+      font-size: clamp(44px, 5.5vw, 68px);
+      line-height: 1;
+      letter-spacing: -.045em;
+      font-weight: 950;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .stat-title {
+      font-size: 21px;
+      line-height: 1.28;
+      font-weight: 900;
+      letter-spacing: -.02em;
+    }
+
+    .dark-box {
+      margin-top: 32px;
+      padding: clamp(34px, 5vw, 54px);
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at 90% 12%, rgba(255, 211, 106, .15), transparent 28%),
+        radial-gradient(circle at 10% 90%, rgba(242, 122, 26, .18), transparent 30%),
+        var(--dark);
+      color: #fff;
+      box-shadow: 0 28px 70px rgba(23,20,17,.25);
+    }
+    .dark-box p { color: rgba(255,255,255,.78); font-size: 19px; max-width: 900px; }
+    .dark-box h3 { font-size: clamp(28px, 4vw, 46px); }
+
+    .journey {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      margin-top: 44px;
+    }
+    .journey-step {
+      position: relative;
+      padding: 22px;
+      min-height: 190px;
+      border-radius: 22px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+    .journey-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--orange);
+      font-weight: 950;
+      z-index: 2;
+    }
+    .journey-step small {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--orange);
+      font-weight: 950;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .journey-step p { color: var(--muted); margin: 0; font-size: 15px; }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 24px;
+      margin-top: 44px;
+    }
+    .section-dark .proof-grid .card h3 { color: var(--ink); }
+    .metric-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .metric-row:last-child { border-bottom: 0; }
+    .metric-name { font-weight: 920; }
+    .metric-sub { color: var(--muted); font-size: 14px; }
+    .metric-value {
+      font-size: 24px;
+      font-weight: 950;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      white-space: nowrap;
+    }
+    .proof-note { color: var(--muted); font-size: 14px; margin-top: 16px; }
+
+    .template-card { padding: 18px; }
+    .template-shot {
+      position: relative;
+      height: 540px;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #fff6e8;
+      cursor: zoom-in;
+    }
+    .template-shot::after {
+      content: "Kliknout pro celou šablonu";
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      padding: 11px 13px;
+      border-radius: 999px;
+      background: rgba(21, 20, 18, .78);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 850;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .2s ease, transform .2s ease;
+      pointer-events: none;
+    }
+    .template-shot:hover::after { opacity: 1; transform: translateY(0); }
+    .template-shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform .25s ease;
+    }
+    .template-shot:hover img { transform: scale(1.018); }
+    .template-caption { padding: 16px 4px 4px; }
+    .template-meta {
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .open-link {
+      display: inline-flex;
+      margin-top: 12px;
+      color: var(--brown);
+      font-size: 14px;
+      font-weight: 900;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .flow-card {
+      position: relative;
+      overflow: hidden;
+      padding: 32px;
+      border-radius: var(--radius-lg);
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 44px rgba(34,27,18,.07);
+    }
+    .flow-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 8px;
+      background: var(--grad);
+    }
+    .flow-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .flow-id {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 950;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: var(--cream);
+      font-size: 25px;
+    }
+    .bullets {
+      display: grid;
+      gap: 10px;
+      margin: 20px 0 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+    }
+    .bullets li {
+      position: relative;
+      padding-left: 24px;
+    }
+    .bullets li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: 950;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 18px;
+      margin-top: 44px;
+    }
+    .timeline-card {
+      min-height: 250px;
+      padding: 28px;
+      border-radius: 24px;
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 44px rgba(34,27,18,.07);
+    }
+    .num {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      border-radius: 16px;
+      background: var(--grad);
+      color: #fff;
+      font-weight: 950;
+    }
+
+    .cta-card {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .cta-left, .cta-right { padding: clamp(34px, 5vw, 58px); }
+    .cta-left { background: radial-gradient(circle at 12% 12%, rgba(255, 211, 106, .28), transparent 33%), var(--cream); }
+    .cta-right { border-left: 1px solid var(--line); }
+    .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 13px 20px;
+      border-radius: 999px;
+      background: var(--grad);
+      color: #fff;
+      font-weight: 950;
+      box-shadow: 0 16px 34px rgba(242,122,26,.26);
+    }
+    .btn.secondary {
+      background: #fff;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+    .avatar-photo {
+      width: 98px;
+      height: 98px;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 28px;
+      margin-bottom: 22px;
+      border: 3px solid #fff;
+      box-shadow: 0 18px 42px rgba(242,122,26,.20);
+    }
+    .fallback-avatar {
+      width: 98px;
+      height: 98px;
+      display: grid;
+      place-items: center;
+      border-radius: 28px;
+      margin-bottom: 22px;
+      background: var(--grad);
+      color: #fff;
+      font-size: 34px;
+      font-weight: 950;
+    }
+
+    footer {
+      padding: 34px 22px;
+      background: var(--dark);
+      color: rgba(255,255,255,.62);
+      font-size: 14px;
+    }
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, .82);
+    }
+    .lightbox.is-open { display: flex; }
+    .lightbox-inner {
+      position: relative;
+      width: min(980px, 96vw);
+      height: min(92vh, 1100px);
+      border-radius: 22px;
+      background: #fff;
+      overflow: auto;
+      box-shadow: 0 30px 80px rgba(0,0,0,.45);
+    }
+    .lightbox-inner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      width: 46px;
+      height: 46px;
+      border: 0;
+      border-radius: 999px;
+      background: #fff;
+      color: #111;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 14px 34px rgba(0,0,0,.25);
+    }
+
+    @media (max-width: 980px) {
+      section { padding: 74px 20px; }
+      .hero { min-height: auto; }
+      .grid-2, .grid-3, .grid-4, .proof-grid, .timeline, .cta-card, .meta-strip { grid-template-columns: 1fr; }
+      .journey { grid-template-columns: 1fr; }
+      .journey-step:not(:last-child)::after { display: none; }
+      .meta-strip div { border-right: 0; border-bottom: 1px solid var(--line); }
+      .meta-strip div:last-child { border-bottom: 0; }
+      .cta-right { border-left: 0; border-top: 1px solid var(--line); }
+      .image-slot { min-height: 310px; }
+      .metric-row { grid-template-columns: 1fr; }
+      .metric-value { white-space: normal; }
+    }
+    @media (max-width: 640px) {
+      .nav { align-items: flex-start; flex-direction: column; }
+      .nav-meta { justify-content: flex-start; }
+      h1 { font-size: clamp(42px, 14vw, 58px); }
+      h2 { font-size: clamp(32px, 10vw, 46px); }
+      .card, .flow-card, .dark-box, .timeline-card { padding: 24px; }
+      .template-shot { height: 440px; }
+      .btn { width: 100%; }
+      .image-slot.hero-banner { aspect-ratio: 16 / 9; }
+    }
+    @media print {
+      .topbar { position: static; }
+      section { page-break-inside: avoid; padding: 44px 22px; }
+      .btn { border: 1px solid #ddd; box-shadow: none; }
+      .lightbox { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+<header class="topbar">
+<nav aria-label="Hlavní navigace" class="nav">
+<a aria-label="Almao" class="brand" href="#top">
+<img alt="Almao" class="brand-logo" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'brand-fallback',textContent:'A'}))" src="assets/almao-logo.webp"/>
+</a>
+<div class="nav-meta">
+<span class="pill">Pro stropni-kazety.com</span>
+<span class="pill">Konzultace · úterý 16:00</span>
+</div>
+</nav>
+</header>
+<main id="top">
+<section aria-label="Úvod prezentace" class="hero section-paper">
+<div class="container hero-grid">
+<div class="hero-copy">
+<div class="eyebrow">🏠 Návrh před konzultací</div>
+<h1><span class="gradient-text">4 automatizace pro e-shop, kde zákazník často potřebuje poradit.</span></h1>
+<p class="lead">Stropni-kazety.com nestojí jen na jedné kategorii. Zákazník tu může řešit polystyrenové stropní kazety, umělé trámy, rozety a dekorace, sklovláknité tapety, ukončovací lišty, PVC obklady na stěnu, bytovou chemii, barvy, nátěry, impregnace i montážní doplňky. Právě proto by e-mail marketing neměl být jen občasný newsletter, ale systém, který pomůže s výběrem, vrátí rozpracovaný košík a po nákupu nabídne to, co k realizaci logicky patří.</p>
+</div>
+<div class="hero-visual">
+<div class="image-slot hero-banner" data-placeholder="Volitelný obrázek: assets/stropni-kazety-hero.png">
+<img alt="Stropní kazety banner" onerror="this.closest('.image-slot').classList.add('missing'); this.remove();" src="assets/stropni-kazety-hero.png"/>
+</div>
+</div>
+<div class="meta-strip">
+<div><span class="meta-k">E-shop</span><span class="meta-v">stropni-kazety.com</span></div>
+<div><span class="meta-k">Fokus</span><span class="meta-v">stropy, stěny, dekorace, chemie a navazující sortiment</span></div>
+<div><span class="meta-k">Připravil</span><span class="meta-v">Štefan Hrušovský</span></div>
+<div><span class="meta-k">Cíl</span><span class="meta-v">víc dokončených objednávek a opakovaných nákupů</span></div>
+</div>
+</div>
+</section>
+<section class="section-soft" id="preco-teraz">
+<div class="container">
+<span class="section-label">Proč to řešit teď</span>
+<h2>Kde uniká potenciál</h2>
+<p class="lead">Největší prostor dnes vidím v absenci uvítací série e-mailů. Právě ta umí zachytit zákazníka hned po první návštěvě, získat od něj základní informaci a podle vybrané preference určit další komunikaci, která mu bude dávat smysl.</p>
+<p class="lead" style="margin-top:18px;">U sortimentu jako polystyrenové stropní kazety, umělé trámy, rozety a dekorace, sklovláknité tapety, ukončovací lišty, PVC obklady na stěnu, bytová chemie, barvy, nátěry nebo impregnace je rozdíl zásadní. Jinak se komunikuje s člověkem, který řeší renovaci stropu, jinak s tím, kdo vybírá obklad na stěnu, a jinak se zákazníkem, který potřebuje chemii, lepidlo nebo doplňky k montáži.</p>
+<div class="grid-3">
+<article class="card stat">
+<div>
+<span class="stat-number">1.</span>
+<div class="stat-title">chybí uvítací série</div>
+</div>
+<p>Zákazník přijde na e-shop, prohlédne si konkrétní kategorii, ale pokud nezanechá kontakt, nejde s ním dál pracovat. Uvítací série může získat e-mail, preferenci a nasměrovat ho na vhodný sortiment.</p>
+</article>
+<article class="card stat">
+<div>
+<span class="stat-number">2.</span>
+<div class="stat-title">košík není konec zájmu</div>
+</div>
+<p>Když zákazník vloží produkt do košíku a objednávku nedokončí, neznamená to, že nechce koupit. Často jen porovnává, řeší množství, montáž, dopravu nebo se k nákupu potřebuje vrátit později.</p>
+</article>
+<article class="card stat">
+<div>
+<span class="stat-number">3.</span>
+<div class="stat-title">po nákupu přichází příslušenství</div>
+</div>
+<p>U tohoto sortimentu samotný produkt často nestačí. Po nákupu je prostor doporučit ukončovací lišty, lepidla, tmely, nářadí, barvy, nátěry, impregnaci nebo další doplňky podle toho, co si zákazník koupil.</p>
+</article>
+</div>
+</div>
+</section>
+<section class="section-paper" id="cesta-zakaznika">
+<div class="container">
+<span class="section-label">Zákaznická cesta</span>
+<h2>Jak zákazník nakupuje</h2>
+<p class="lead">Automatizace mají kopírovat to, jak zákazník reálně přemýšlí. Nejprve hledá řešení, potom porovnává možnosti, řeší montáž a až potom objednává. Po nákupu se dá dál pracovat s doplňky, příslušenstvím nebo dalším projektem.</p>
+<div class="journey">
+<div class="journey-step"><small>01</small><h3>Návštěva</h3><p>Zákazník přijde z reklamy, vyhledávání nebo doporučení.</p></div>
+<div class="journey-step"><small>02</small><h3>Zájem</h3><p>Prohlíží konkrétní kategorii — kazety, trámy, rozety, obklady, tapety, lišty nebo chemii.</p></div>
+<div class="journey-step"><small>03</small><h3>Košík</h3><p>Produkt vloží do košíku, ale může ještě řešit množství, montáž, dopravu nebo porovnání.</p></div>
+<div class="journey-step"><small>04</small><h3>Nákup</h3><p>Objedná produkt, který souvisí s konkrétním projektem nebo renovací.</p></div>
+<div class="journey-step"><small>05</small><h3>Další krok</h3><p>Po nákupu dává smysl doporučit příslušenství, doplňky nebo další vhodný sortiment.</p></div>
+</div>
+</div>
+</section>
+<section class="section-dark" id="dokaz">
+<div class="container">
+<span class="section-label">Důkaz z praxe</span>
+<h2>Proč to není jen teorie</h2>
+<p class="lead">Níže jsou výsledky a ukázky z e-shopů, kde e-mail marketing už řeším. Nejsou garancí stejných čísel pro stropni-kazety.com, ale ukazují, co umí dobře nastavený systém přinést.</p>
+<div class="proof-grid">
+<article class="card">
+<h3>Strelecký raj automatizace</h3>
+<div class="metric-row"><div><div class="metric-name">Welcome série</div><div class="metric-sub">Doručeno 226 · Open 59,73 % · CTR 31,11 %</div></div><div class="metric-value">17 118 €</div></div>
+<div class="metric-row"><div><div class="metric-name">Opuštěný košík</div><div class="metric-sub">Doručeno 192 · Open 38,02 % · CTR 27,40 %</div></div><div class="metric-value">2 788 €</div></div>
+<div class="metric-row"><div><div class="metric-name">Reaktivace</div><div class="metric-sub">Doručeno 866 · Open 53,35 % · CTR 56,49 %</div></div><div class="metric-value">1 067 €</div></div>
+<p class="proof-note">Výsledky závisí na databázi, sortimentu, cenách, marži, sezóně a kvalitě technického nastavení.</p>
+</article>
+<article class="card">
+<h3>Vinohruška newslettery</h3>
+<div class="metric-row"><div><div class="metric-name">Body | Apríl/Máj</div><div class="metric-sub">Doručeno 7 696 · CTR 4,33 %</div></div><div class="metric-value">48,65 % open</div></div>
+<div class="metric-row"><div><div class="metric-name">Mango Kir | SK</div><div class="metric-sub">Doručeno 1 821 · CTR 2,64 %</div></div><div class="metric-value">36,52 % open</div></div>
+<div class="metric-row"><div><div class="metric-name">Body | SK</div><div class="metric-sub">Doručeno 1 812 · CTR 4,36 %</div></div><div class="metric-value">29,97 % open</div></div>
+<p class="proof-note">U Víno Hruška jde hlavně o pravidelné kampaně a práci s databází.</p>
+</article>
+</div>
+</div>
+</section>
+<section class="section-soft" id="ukazky">
+<div class="container">
+<span class="section-label">Ukázky šablon</span>
+<h2>Ako vyzerá moja práca<br/>v e-mailovej schránke</h2>
+<p class="lead">Kliknutím na šablonu si klient otevře celý náhled. Žádné generické drag &amp; drop výstupy — custom HTML šablony v identitě značky, připravené pro reálný inbox.</p>
+<div class="grid-3">
+<article class="card template-card">
+<button class="template-shot image-slot js-open-template" data-full="assets/vino-hruska-vernostny-program.png" data-placeholder="assets/vino-hruska-vernostny-program.png" type="button">
+<img alt="Ukázka e-mailu Víno Hruška" onerror="this.closest('.image-slot').classList.add('missing'); this.remove();" src="assets/vino-hruska-vernostny-program.png"/>
+</button>
+<div class="template-caption"><div class="template-meta">Ukázka 1</div><h3>Welcome / věrnostní e-mail</h3><p>Víno Hruška</p><a class="open-link" href="assets/vino-hruska-vernostny-program.png" rel="noopener" target="_blank">Otevřít celou šablonu</a></div>
+</article>
+<article class="card template-card">
+<button class="template-shot image-slot js-open-template" data-full="assets/snackstore-produktovy-newsletter.png" data-placeholder="assets/snackstore-produktovy-newsletter.png" type="button">
+<img alt="Ukázka e-mailu Snackstore" onerror="this.closest('.image-slot').classList.add('missing'); this.remove();" src="assets/snackstore-produktovy-newsletter.png"/>
+</button>
+<div class="template-caption"><div class="template-meta">Ukázka 2</div><h3>Produktový newsletter</h3><p>Snackstore</p><a class="open-link" href="assets/snackstore-produktovy-newsletter.png" rel="noopener" target="_blank">Otevřít celou šablonu</a></div>
+</article>
+<article class="card template-card">
+<button class="template-shot image-slot js-open-template" data-full="assets/afra-produktovy-newsletter.png" data-placeholder="assets/afra-produktovy-newsletter.png" type="button">
+<img alt="Ukázka e-mailu AFRA" onerror="this.closest('.image-slot').classList.add('missing'); this.remove();" src="assets/afra-produktovy-newsletter.png"/>
+</button>
+<div class="template-caption"><div class="template-meta">Ukázka 3</div><h3>Produktový newsletter</h3><p>AFRA</p><a class="open-link" href="assets/afra-produktovy-newsletter.png" rel="noopener" target="_blank">Otevřít celou šablonu</a></div>
+</article>
+</div>
+</div>
+</section>
+<section class="section-paper" id="automatizace">
+<div class="container">
+<span class="section-label">Doporučené automatizace</span>
+<h2>4 série pro první fázi</h2>
+<p class="lead">Priorita je jednoduchá: zachytit nové zájemce, vracet rozpracované košíky, pomoct po nákupu a následně připomenout související sortiment.</p>
+<div class="grid-2">
+<article class="flow-card">
+<div class="flow-top"><span class="flow-id">Automatizace 01</span><span class="icon">👋</span></div>
+<h3>Uvítací série</h3>
+<p>Zachytí kontakt a rozdělí člověka podle toho, jestli řeší strop, stěnu, dekorace, chemii, barvy nebo montážní příslušenství.</p>
+<ul class="bullets"><li>stropní kazety / trámy / rozety / tapety / lišty / obklady / chemie / barvy</li><li>obsah podle zájmu, ne plošný úvod o e-shopu</li><li>první konverze přes užitečné doporučení nebo průvodce výběrem</li></ul>
+</article>
+<article class="flow-card">
+<div class="flow-top"><span class="flow-id">Automatizace 02</span><span class="icon">🛒</span></div>
+<h3>Opuštěný košík</h3>
+<p>Vrátí zákazníka, který už měl zájem, ale objednávku nedokončil.</p>
+<ul class="bullets"><li>připomenutí rozpracovaného výběru</li><li>argumenty: skladovost, zkušenost, návody, podpora</li><li>doplnění nejistot: kolik kusů, jaké lepidlo, jaké lišty, co k tomu</li></ul>
+</article>
+<article class="flow-card">
+<div class="flow-top"><span class="flow-id">Automatizace 03</span><span class="icon">🧰</span></div>
+<h3>Po nákupu</h3>
+<p>Pomůže zákazníkovi po nákupu a přirozeně otevře prostor pro doplňky.</p>
+<ul class="bullets"><li>návod podle typu nákupu: kazety, lišty, obklady, chemie, nátěr</li><li>checklist: podklad, lepidlo, tmel, nářadí, zakončení</li><li>recenze, fotka realizace a doporučení doplňků</li></ul>
+</article>
+<article class="flow-card">
+<div class="flow-top"><span class="flow-id">Automatizace 04</span><span class="icon">🔁</span></div>
+<h3>Reaktivace</h3>
+<p>Vrací zákazníka zpět, když může řešit další místnost, doplnění materiálu nebo nový projekt.</p>
+<ul class="bullets"><li>navázání na poslední nákup a typ sortimentu</li><li>doporučení příslušenství, doplňků nebo další kategorie</li><li>sezónní připomenutí rekonstrukcí, oprav a úprav interiéru</li></ul>
+</article>
+</div>
+</div>
+</section>
+<section class="section-soft" id="plan">
+<div class="container">
+<span class="section-label">Pořadí nasazení</span>
+<h2>Postup po konzultaci</h2>
+<div class="timeline">
+<article class="timeline-card"><span class="num">01</span><h3>Analýza</h3><p>Projdu e-shop, nákupní proces, databázi, technické nastavení a hlavní skupiny sortimentu.</p></article>
+<article class="timeline-card"><span class="num">02</span><h3>Segmenty</h3><p>Určíme hlavní skupiny: stropy, stěny, dekorace, chemie, barvy a montážní doplňky.</p></article>
+<article class="timeline-card"><span class="num">03</span><h3>První flowy</h3><p>Prioritně uvítací série se segmentací a opuštěný košík, protože pracují s nejteplejším zájmem.</p></article>
+<article class="timeline-card"><span class="num">04</span><h3>Ladění</h3><p>Po spuštění sledujeme open rate, kliky, objednávky a upravujeme podle dat.</p></article>
+</div>
+</div>
+</section>
+<section class="section-paper" id="vystup">
+<div class="container">
+<div class="dark-box">
+<span class="section-label">Výstup konzultace</span>
+<h3>Konkrétní plán, ne jen nápad.</h3>
+<p>Výstupem bude návrh automatizací, doporučené pořadí nasazení, segmentace podle zájmu zákazníka, doporučené e-maily v sériích a technické kroky pro spuštění v Ecomailu.</p>
+</div>
+</div>
+</section>
+<section class="section-soft" id="kontakt">
+<div class="container">
+<div class="cta-card">
+<div class="cta-left">
+<span class="section-label">Další krok</span>
+<h2>Konzultace v úterý 16:00</h2>
+<p class="lead">Na konzultaci projdeme stropni-kazety.com konkrétně. Cílem je určit, které automatizace mají největší potenciál, jak pracovat s jednotlivými kategoriemi a co spustit jako první.</p>
+<div class="btns">
+<a class="btn" href="mailto:s.hrusovsky@almao.cz?subject=stropni-kazety.com%20-%20konzultace%20e-mail%20marketing">✉ Napsat Štefanovi</a>
+<a class="btn secondary" href="tel:+420705988788">Zavolat: +420 705 988 788</a>
+</div>
+</div>
+<div class="cta-right">
+<img alt="Štefan Hrušovský" class="avatar-photo" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'fallback-avatar',textContent:'ŠH'}))" src="assets/stefan-hrusovsky.webp"/>
+<h3>Štefan Hrušovský</h3>
+<p><strong>Almao · e-mail marketing</strong></p>
+<p style="color:var(--muted)">Pomáhám menším a středním e-shopům v SK/CZ trhu nastavit e-mail marketing tak, aby nebyl jen o newsletterech, ale o systému na opakované a dokončené nákupy.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="footer-inner">
+<span>© Almao · Štefan Hrušovský</span>
+<span>Pro stropni-kazety.com</span>
+</div>
+</footer>
+</div>
+<div aria-hidden="true" aria-label="Náhled celé e-mailové šablony" class="lightbox" id="templateLightbox" role="dialog">
+<button aria-label="Zavřít náhled" class="lightbox-close" type="button">×</button>
+<div class="lightbox-inner">
+<img alt="Celá e-mailová šablona" id="lightboxImage" src=""/>
+</div>
+</div>
+<script>
+    (function () {
+      const lightbox = document.getElementById('templateLightbox');
+      const lightboxImage = document.getElementById('lightboxImage');
+      const closeButton = lightbox.querySelector('.lightbox-close');
+      const triggers = document.querySelectorAll('.js-open-template');
+
+      function openLightbox(src, alt) {
+        lightboxImage.src = src;
+        lightboxImage.alt = alt || 'Celá e-mailová šablona';
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightboxImage.src = '';
+        document.body.style.overflow = '';
+      }
+
+      triggers.forEach((button) => {
+        button.addEventListener('click', () => {
+          const src = button.getAttribute('data-full');
+          const img = button.querySelector('img');
+          if (src) openLightbox(src, img ? img.alt : 'Celá e-mailová šablona');
+        });
+      });
+
+      closeButton.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) closeLightbox();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+      });
+    }());
+  </script>
+</body>
+</html>
