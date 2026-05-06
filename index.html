@@ -424,10 +424,10 @@
       overflow: hidden;
       border: 1px solid var(--line);
       background: #fff6e8;
-      cursor: zoom-in;
+      cursor: pointer;
     }
     .template-shot::after {
-      content: "Kliknout pro celou šablonu";
+      content: "Otevřít celou šablonu";
       position: absolute;
       left: 14px;
       right: 14px;
@@ -809,21 +809,21 @@
 <p class="lead">Kliknutím na šablonu si klient otevře celý náhled. Žádné generické drag &amp; drop výstupy — custom HTML šablony v identitě značky, připravené pro reálný inbox.</p>
 <div class="grid-3">
 <article class="card template-card">
-<button class="template-shot image-slot js-open-template" data-full="assets/vino-hruska-vernostny-program.png" data-placeholder="assets/vino-hruska-vernostny-program.png" type="button">
+<a class="template-shot image-slot" data-placeholder="assets/vino-hruska-vernostny-program.png" href="assets/vino-hruska-vernostny-program.png" target="_blank" rel="noopener">
 <img alt="Ukázka e-mailu Víno Hruška" onerror="this.closest('.image-slot').classList.add('missing'); this.remove();" src="assets/vino-hruska-vernostny-program.png"/>
-</button>
+</a>
 <div class="template-caption"><div class="template-meta">Ukázka 1</div><h3>Welcome / věrnostní e-mail</h3><p>Víno Hruška</p><a class="open-link" href="assets/vino-hruska-vernostny-program.png" rel="noopener" target="_blank">Otevřít celou šablonu</a></div>
 </article>
 <article class="card template-card">
-<button class="template-shot image-slot js-open-template" data-full="assets/snackstore-produktovy-newsletter.png" data-placeholder="assets/snackstore-produktovy-newsletter.png" type="button">
+<a class="template-shot image-slot" data-placeholder="assets/snackstore-produktovy-newsletter.png" href="assets/snackstore-produktovy-newsletter.png" target="_blank" rel="noopener">
 <img alt="Ukázka e-mailu Snackstore" onerror="this.closest('.image-slot').classList.add('missing'); this.remove();" src="assets/snackstore-produktovy-newsletter.png"/>
-</button>
+</a>
 <div class="template-caption"><div class="template-meta">Ukázka 2</div><h3>Produktový newsletter</h3><p>Snackstore</p><a class="open-link" href="assets/snackstore-produktovy-newsletter.png" rel="noopener" target="_blank">Otevřít celou šablonu</a></div>
 </article>
 <article class="card template-card">
-<button class="template-shot image-slot js-open-template" data-full="assets/afra-produktovy-newsletter.png" data-placeholder="assets/afra-produktovy-newsletter.png" type="button">
+<a class="template-shot image-slot" data-placeholder="assets/afra-produktovy-newsletter.png" href="assets/afra-produktovy-newsletter.png" target="_blank" rel="noopener">
 <img alt="Ukázka e-mailu AFRA" onerror="this.closest('.image-slot').classList.add('missing'); this.remove();" src="assets/afra-produktovy-newsletter.png"/>
-</button>
+</a>
 <div class="template-caption"><div class="template-meta">Ukázka 3</div><h3>Produktový newsletter</h3><p>AFRA</p><a class="open-link" href="assets/afra-produktovy-newsletter.png" rel="noopener" target="_blank">Otevřít celou šablonu</a></div>
 </article>
 </div>
@@ -912,50 +912,6 @@
 </div>
 </footer>
 </div>
-<div aria-hidden="true" aria-label="Náhled celé e-mailové šablony" class="lightbox" id="templateLightbox" role="dialog">
-<button aria-label="Zavřít náhled" class="lightbox-close" type="button">×</button>
-<div class="lightbox-inner">
-<img alt="Celá e-mailová šablona" id="lightboxImage" src=""/>
-</div>
-</div>
-<script>
-    (function () {
-      const lightbox = document.getElementById('templateLightbox');
-      const lightboxImage = document.getElementById('lightboxImage');
-      const closeButton = lightbox.querySelector('.lightbox-close');
-      const triggers = document.querySelectorAll('.js-open-template');
 
-      function openLightbox(src, alt) {
-        lightboxImage.src = src;
-        lightboxImage.alt = alt || 'Celá e-mailová šablona';
-        lightbox.classList.add('is-open');
-        lightbox.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeLightbox() {
-        lightbox.classList.remove('is-open');
-        lightbox.setAttribute('aria-hidden', 'true');
-        lightboxImage.src = '';
-        document.body.style.overflow = '';
-      }
-
-      triggers.forEach((button) => {
-        button.addEventListener('click', () => {
-          const src = button.getAttribute('data-full');
-          const img = button.querySelector('img');
-          if (src) openLightbox(src, img ? img.alt : 'Celá e-mailová šablona');
-        });
-      });
-
-      closeButton.addEventListener('click', closeLightbox);
-      lightbox.addEventListener('click', (event) => {
-        if (event.target === lightbox) closeLightbox();
-      });
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
-      });
-    }());
-  </script>
 </body>
 </html>
